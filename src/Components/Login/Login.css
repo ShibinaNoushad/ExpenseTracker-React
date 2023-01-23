@@ -1,0 +1,48 @@
+.backgroundDiv {
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-attachment: fixed;
+  width: 100%;
+}
+.loginBox {
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  right: 40%;
+  width: 20%;
+  height: 23rem;
+  background-color: white;
+  color: black;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  align-items: center;
+  /* padding: 0 10%; */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
+  border: 1px solid grey;
+  /* z-index: 10; */
+}
+.inputHeading {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  margin-left: 90px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.loginInput {
+  width: 80%;
+  margin-left: 30px;
+  margin-bottom: 3px;
+}
+.loginbtn {
+  margin-left: 75px;
+  width: 50%;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.AlreadyLogin {
+  margin-left: 50px;
+  width: 70%;
+  margin-bottom: 40px;
+  margin-top: 5px;
+}

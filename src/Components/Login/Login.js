@@ -20,7 +20,7 @@ function Login() {
     const userEmail = emailInputRef.current.value;
     const userPassword = passwordInputRef.current.value;
     // const userConfirmPassword = confirmPasswordInputRef.current.value;
-    if (!isLogin && userPassword != confirmPasswordInputRef.current.value) {
+    if (!isLogin && userPassword !== confirmPasswordInputRef.current.value) {
       alert("password not matching");
       return;
     }

@@ -1,0 +1,21 @@
+.titlelabels {
+  cursor: pointer;
+  margin-left: 40px;
+  align-content: center;
+  color: black;
+  font-weight: 3px;
+  /* font-size: large; */
+}
+.active {
+  color: #95bcf0;
+  /* padding-bottom: 0.25rem; */
+  /* border-bottom: 4px solid #95bcf0; */
+}
+.myweb {
+  color: blue;
+  padding-left: 40px;
+  font-weight: bold;
+}
+.margin {
+  border-bottom: 2px solid white;
+}

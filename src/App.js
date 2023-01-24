@@ -9,13 +9,13 @@ function App() {
   const loginCtx = useContext(LoginContext);
   return (
     <div>
+      <MyNavbar></MyNavbar>
+
       <Route path="/" exact>
-        <MyNavbar></MyNavbar>
         <Login></Login>
       </Route>
       {!loginCtx.isLoggedIn && <Redirect to="/"></Redirect>}
       {loginCtx.isLoggedIn && <Redirect to="/welcome"></Redirect>}
-
 
       <Route path="/welcome">
         <Welcome></Welcome>

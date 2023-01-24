@@ -102,14 +102,14 @@ function UserProfile() {
   return (
     <>
       <div className="bor">
-        <span className="quote">
+        {/* <span className="quote">
           Winners Never Quit, Quitters Never Win
           <br />
         </span>
         <span className="complete">
           Your profile is 64% completed.A complete profile has higher chances of
           landing a job
-        </span>
+        </span> */}
       </div>
       <div className="contain">
         <h5 className="contact">Contact Details</h5>
@@ -118,7 +118,7 @@ function UserProfile() {
             <Form.Label className="inputLabel">Full Name</Form.Label>
             <Form.Control
               type="text"
-              className="loginInput"
+              className="loginInputUser"
               ref={fullNameRef}
             />
           </Form.Group>

@@ -1,0 +1,41 @@
+.quote {
+  font-size: 25px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.complete {
+  margin-left: 55%;
+  font-style: italic;
+  font-size: large;
+  background-color: plum;
+  border-radius: 5px;
+}
+.bor {
+  border-bottom: 2px solid grey;
+}
+.contain {
+  position: fixed;
+
+  top: 20%;
+  left: 25%;
+  right: 40%;
+  height: 45%;
+  width: 50%;
+  border: 1px solid grey;
+  /* background-color: aqua; */
+  text-align: center;
+}
+.contact {
+  padding-top: 25px;
+  font-weight: bold;
+  font-size: 25px;
+}
+.loginInput {
+  width: 80%;
+  margin-left: 55px;
+  margin-bottom: 3px;
+}
+.inputLabel {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}

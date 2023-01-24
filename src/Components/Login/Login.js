@@ -1,10 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
-// import Button from "react-bootstrap";
+import { useHistory, Redirect } from "react-router-dom";
+import LoginContext from "../../Store/LoginContext";
 import "./Login.css";
 
 function Login() {
+  const history = useHistory();
+
   const [isLogin, setIsLogin] = useState(false);
+  const loginCtx = useContext(LoginContext);
   const switchHandler = () => {
     setIsLogin((prev) => {
       return !prev;
@@ -15,7 +19,7 @@ function Login() {
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
 
-  const formHandler = (e) => {
+  const formHandler = async (e) => {
     e.preventDefault();
     const userEmail = emailInputRef.current.value;
     const userPassword = passwordInputRef.current.value;
@@ -33,43 +37,42 @@ function Login() {
       url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB-1cDOSrzhXi7pQ330k-yRNDTZCPoIj1o";
     }
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify({
-        email: userEmail,
-        password: userPassword,
-        returnSecureToken: true,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        // setIsLoading(false);
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = "Authentication failed!";
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          email: userEmail,
+          password: userPassword,
+          returnSecureToken: true,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        loginCtx.login(data.idToken);
         console.log(data);
         emailInputRef.current.value = "";
         passwordInputRef.current.value = "";
         if (!isLogin) {
           confirmPasswordInputRef.current.value = "";
         }
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+
+        history.replace("/welcome");
+      } else {
+        const data = await res.json();
+        let errorMessage = "Authentication failed!";
+        if (data && data.error && data.error.message) {
+          errorMessage = data.error.message;
+        }
+        history.replace("/");
+
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
+      alert(error);
+    }
   };
   return (
     <div className="">
@@ -104,6 +107,11 @@ function Login() {
           <Button variant="primary" type="submit" className="loginbtn">
             {isLogin ? "Login" : "Sign up"}
           </Button>
+          {isLogin && (
+            <Button variant="link" type="button" className="forgotPass">
+              Forgot Password
+            </Button>
+          )}
           <div>
             <Button
               variant="primary"

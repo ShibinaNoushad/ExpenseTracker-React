@@ -1,0 +1,8 @@
+.welcome {
+  font-size: 30px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-left: 10px;
+  margin-top: 5px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid grey;
+}

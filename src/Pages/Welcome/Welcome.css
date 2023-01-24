@@ -5,13 +5,18 @@
   margin-top: 5px;
   padding-bottom: 10px;
 }
-.profile{
+.profile {
   margin-left: 50%;
   margin-bottom: 8px;
   height: 30px;
   font-style: italic;
 }
-.bor{
+.verify {
+  margin-left: 85%;
+  margin-top: 2px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.bor {
   border-bottom: 2px solid grey;
-
 }

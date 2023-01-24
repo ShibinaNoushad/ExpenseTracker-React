@@ -9,29 +9,27 @@ function MyNavbar() {
     <div>
       <Navbar bg="light" variant="light">
         <Container>
-          <Navbar.Brand  className={classes.myweb}>
-            MyWebLink
-          </Navbar.Brand>
+          <Navbar.Brand className={classes.myweb}>MyWebLink</Navbar.Brand>
 
           <Nav className="me-auto " bg="dark" variant="dark">
             <Nav.Link
               to="/home"
               className={classes.titlelabels}
-              activeClassName={classes.active}
+              // activeClassName={classes.active}
             >
               Home
             </Nav.Link>
             <Nav.Link
               to="/products"
               className={classes.titlelabels}
-              activeClassName={classes.active}
+              // activeClassName={classes.active}
             >
               Products
             </Nav.Link>
             <Nav.Link
               to="/about"
               className={classes.titlelabels}
-              activeClassName={classes.active}
+              // activeClassName={classes.active}
             >
               About Us
             </Nav.Link>

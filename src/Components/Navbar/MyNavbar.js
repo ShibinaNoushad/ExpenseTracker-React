@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import classes from "./MyNavbar.module.css";
+import LoginContext from "../../Store/LoginContext";
 
 function MyNavbar() {
+  const loginCtx = useContext(LoginContext);
+  const logoutHandler = () => {
+    loginCtx.logout();
+  };
   return (
     <div>
       <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand className={classes.myweb}>MyWebLink</Navbar.Brand>
-
           <Nav className="me-auto " bg="dark" variant="dark">
             <Nav.Link
               to="/home"
@@ -34,6 +38,11 @@ function MyNavbar() {
               About Us
             </Nav.Link>
           </Nav>
+          {loginCtx.isLoggedIn && (
+            <Button variant="secondary" onClick={logoutHandler}>
+              LogOut
+            </Button>
+          )}
         </Container>
       </Navbar>
       <div className={classes.margin}></div>

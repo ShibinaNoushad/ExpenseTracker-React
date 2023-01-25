@@ -5,6 +5,7 @@ import LoginContext from "./Store/LoginContext";
 import { Redirect, Route } from "react-router-dom";
 import Welcome from "./Pages/Welcome/Welcome";
 import UserProfile from "./Pages/UserProfile/UserProfile";
+import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 function App() {
   const loginCtx = useContext(LoginContext);
   return (
@@ -22,6 +23,9 @@ function App() {
       </Route>
       <Route path="/userProfile">
         <UserProfile></UserProfile>
+      </Route>
+      <Route path="/resetpassword">
+        <ResetPassword></ResetPassword>
       </Route>
     </div>
   );

@@ -14,6 +14,10 @@ function Login() {
       return !prev;
     });
   };
+  const forgotPasswordHandler = () => {
+    history.replace("/resetpassword");
+    console.log("reset");
+  };
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -52,7 +56,7 @@ function Login() {
       if (res.ok) {
         const data = await res.json();
         loginCtx.login(data.idToken);
-        console.log(data);
+        // console.log(data);
         emailInputRef.current.value = "";
         passwordInputRef.current.value = "";
         if (!isLogin) {
@@ -108,7 +112,12 @@ function Login() {
             {isLogin ? "Login" : "Sign up"}
           </Button>
           {isLogin && (
-            <Button variant="link" type="button" className="forgotPass">
+            <Button
+              variant="link"
+              type="button"
+              className="forgotPass"
+              onClick={forgotPasswordHandler}
+            >
               Forgot Password
             </Button>
           )}

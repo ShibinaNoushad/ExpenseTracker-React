@@ -17,9 +17,9 @@
   font-style: italic;
 }
 .bor {
-  background-image: url("../../Components/Login/blue.jpg"); /* The image used */
-  height:700px;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-image: url("../../Components/Login/blue.jpg");
+  height: 700px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

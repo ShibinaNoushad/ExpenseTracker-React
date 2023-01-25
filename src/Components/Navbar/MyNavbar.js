@@ -39,9 +39,7 @@ function MyNavbar() {
             </Nav.Link>
           </Nav>
           {loginCtx.isLoggedIn && (
-            <Button variant="secondary" onClick={logoutHandler}>
-              LogOut
-            </Button>
+            <Button variant="secondary" onClick={logoutHandler}>Logout</Button>
           )}
         </Container>
       </Navbar>

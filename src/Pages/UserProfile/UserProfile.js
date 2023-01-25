@@ -30,7 +30,7 @@ function UserProfile() {
       );
       if (res.ok) {
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         data.users.forEach((element) => {
           console.log(data.users);
           fullNameRef.current.value = element.displayName

@@ -6,12 +6,15 @@ import { LoginContextProvider } from "./Store/LoginContext";
 
 import "./index.css";
 import App from "./App";
+import { ExpenseContextProvider } from "./Store/ExpenseContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <LoginContextProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ExpenseContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ExpenseContextProvider>
   </LoginContextProvider>
 );

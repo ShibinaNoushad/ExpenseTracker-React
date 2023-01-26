@@ -24,11 +24,11 @@ function MyNavbar() {
               Home
             </Nav.Link>
             <Nav.Link
-              to="/products"
+              to="/expense"
               className={classes.titlelabels}
               // activeClassName={classes.active}
             >
-              Products
+              Expenses
             </Nav.Link>
             <Nav.Link
               to="/about"
@@ -39,7 +39,9 @@ function MyNavbar() {
             </Nav.Link>
           </Nav>
           {loginCtx.isLoggedIn && (
-            <Button variant="secondary" onClick={logoutHandler}>Logout</Button>
+            <Button variant="secondary" onClick={logoutHandler}>
+              Logout
+            </Button>
           )}
         </Container>
       </Navbar>

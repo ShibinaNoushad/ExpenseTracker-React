@@ -6,6 +6,7 @@ import { Redirect, Route } from "react-router-dom";
 import Welcome from "./Pages/Welcome/Welcome";
 import UserProfile from "./Pages/UserProfile/UserProfile";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
+import AddExpenseForm from "./Pages/AddExpense/AddExpenseForm";
 function App() {
   const loginCtx = useContext(LoginContext);
   return (
@@ -14,6 +15,9 @@ function App() {
 
       <Route path="/" exact>
         <Login></Login>
+      </Route>
+      <Route path="/expense">
+        <AddExpenseForm></AddExpenseForm>
       </Route>
       {!loginCtx.isLoggedIn && <Redirect to="/"></Redirect>}
       {loginCtx.isLoggedIn && <Redirect to="/welcome"></Redirect>}

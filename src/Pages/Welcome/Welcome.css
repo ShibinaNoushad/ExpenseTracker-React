@@ -23,3 +23,13 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.addExpensebtn{
+  margin-top: 5%;
+  margin-left: 50%;
+  width: 20%;
+  height: 10%;
+  background-color:grey;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}

@@ -1,0 +1,23 @@
+.addExpenseDiv {
+  position: fixed;
+  border: 2px solid grey;
+  top: 15%;
+  left: 2%;
+  right: 60%;
+  height: 60%;
+  text-align: center;
+}
+.addExpenseDiv h2 {
+  color: blue;
+  margin-left: 5%;
+  padding-top: 5px;
+  padding-bottom: 5%;
+  font-size: 60px;
+}
+.addExpenseLabel {
+  font-weight: bold;
+}
+.addExpenseInput {
+  width: 50%;
+  margin-left: 25%;
+}

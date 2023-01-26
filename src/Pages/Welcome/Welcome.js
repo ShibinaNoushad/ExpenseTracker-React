@@ -7,6 +7,10 @@ import LoginContext from "../../Store/LoginContext";
 function Welcome() {
   const history = useHistory();
   const loginCtx = useContext(LoginContext);
+  const addExpenseHandler = () => {
+    console.log("expense");
+    history.replace("/expense");
+  };
   const verifyEmail = async () => {
     try {
       const res = await fetch(
@@ -54,6 +58,14 @@ function Welcome() {
         </Button>
         <Button variant="primary" className="verify" onClick={verifyEmail}>
           Verify Email
+        </Button>{" "}
+        <br />
+        <Button
+          variant="primary"
+          className="addExpensebtn"
+          onClick={addExpenseHandler}
+        >
+          Add Expense
         </Button>
       </div>
     </>

@@ -32,6 +32,7 @@ function Login() {
       alert("password not matching");
       return;
     }
+    localStorage.setItem("email", userEmail);
     console.log("success");
     let url;
     if (isLogin) {

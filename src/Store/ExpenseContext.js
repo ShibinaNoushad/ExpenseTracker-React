@@ -17,10 +17,18 @@ export const ExpenseContextProvider = (props) => {
     const res = await axios.get(
       `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/expense/${userId}.json`
     );
+    console.log(res.data);
+    // let index = 0;
     for (const key in res.data) {
+      // arr[index] = res.data[key];
+      // index++;
       arr.push(res.data[key]);
     }
     setExpense([...arr]);
+    // });
+    // for (const myexpense in res.data) {
+    //   setExpense(res.data[myexpense]);
+    // }
   };
   useEffect(() => {
     getData();

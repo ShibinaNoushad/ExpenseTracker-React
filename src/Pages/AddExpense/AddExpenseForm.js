@@ -81,6 +81,7 @@ function AddExpenseForm() {
             <option value="Food">Food</option>
             <option value="Movies">Movies</option>
             <option value="Fuel">Fuel</option>
+            <option value="Electronics">Electronics</option>
             <option value="Fuel">Others</option>
           </Form.Select>
           <br />

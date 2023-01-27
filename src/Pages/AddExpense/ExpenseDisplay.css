@@ -1,0 +1,29 @@
+.expdes {
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 5%;
+}
+.expCat {
+  margin-left: 10%;
+  font-size: 20px;
+  color: grey;
+  margin-right: 10px;
+}
+.expAmount {
+  margin-left: 25%;
+}
+
+.moneyItemslabel {
+  text-align: center;
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(192, 192, 192);
+  font-family: "product sans";
+  width: 10%;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+  background-color: blue;
+}

@@ -4,10 +4,11 @@ import { Button, Form } from "react-bootstrap";
 import ExpenseContext from "../../Store/ExpenseContext";
 import "./AddExpenseForm.css";
 import ExpenseDisplay from "./ExpenseDisplay";
+import axios from "axios";
 
 function AddExpenseForm() {
   const expenseCtx = useContext(ExpenseContext);
-  const [expense, setExpense] = useState(false);
+  const userId = localStorage.getItem("email");
   const amountRef = useRef();
   const descriptionRef = useRef();
   const categoryRef = useRef();
@@ -29,9 +30,21 @@ function AddExpenseForm() {
       description: enteredDescription,
       category: enteredCategory,
     };
+    const newExp = JSON.stringify(newexp);
     console.log("clicked");
-    expenseCtx.addExpense({ ...newexp });
-    setExpense(true);
+    try {
+      axios.post(
+        `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/expense/${userId}.json`,
+        newExp
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    // expenseCtx.addExpense({ ...newexp });
+    expenseCtx.addExpense();
+    amountRef.current.value = "";
+    descriptionRef.current.value = "";
+    categoryRef.current.value = "";
   };
 
   return (
@@ -76,7 +89,7 @@ function AddExpenseForm() {
           </Button>
         </Form>
       </div>
-      {expense && <ExpenseDisplay />}
+      <ExpenseDisplay />
     </>
   );
 }

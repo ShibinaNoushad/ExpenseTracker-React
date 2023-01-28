@@ -16,9 +16,11 @@ function App() {
       <Route path="/" exact>
         <Login></Login>
       </Route>
-      <Route path="/expense">
-        <AddExpenseForm></AddExpenseForm>
-      </Route>
+      {loginCtx.isLoggedIn && (
+        <Route path="/expense">
+          <AddExpenseForm></AddExpenseForm>
+        </Route>
+      )}
       {!loginCtx.isLoggedIn && <Redirect to="/"></Redirect>}
       {loginCtx.isLoggedIn && <Redirect to="/welcome"></Redirect>}
 

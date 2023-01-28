@@ -8,7 +8,7 @@ function ExpenseDisplay(props) {
   return (
     <Card>
       {expenseCtx.expenses.map((elem) => (
-        <Expense elem={elem} key={Math.random().toString()}></Expense>
+        <Expense elem={elem} key={Math.random().toString() }></Expense>
       ))}
     </Card>
   );

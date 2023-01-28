@@ -12,14 +12,15 @@ function AddExpenseForm() {
   const amountRef = useRef();
   const descriptionRef = useRef();
   const categoryRef = useRef();
-  const addExpenseSubmitHandler = (e) => {
+
+  const addExpenseSubmitHandler = async (e) => {
     e.preventDefault();
     const enteredAmount = amountRef.current.value;
     const enteredDescription = descriptionRef.current.value;
     const enteredCategory = categoryRef.current.value;
     if (
-      enteredAmount.trim().length < 0 ||
-      enteredDescription.length < 4 ||
+      enteredAmount.trim().length <= 0 ||
+      enteredDescription.trim().length <= 0 ||
       enteredCategory == "Category"
     ) {
       alert("Please enter all fields correctly");
@@ -31,20 +32,47 @@ function AddExpenseForm() {
       category: enteredCategory,
     };
     const newExp = JSON.stringify(newexp);
-    console.log("clicked");
-    try {
-      axios.post(
-        `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/expense/${userId}.json`,
-        newExp
-      );
-    } catch (error) {
-      console.log(error);
+    if (expenseCtx.editState) {
+      // await axios.put(
+      //   `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}/${expenseCtx.editObj.id}.json`,
+      //   newexp
+      // );
+      expenseCtx.editExpense(expenseCtx.editObj.id, newexp);
+      amountRef.current.value = "";
+      descriptionRef.current.value = "";
+      categoryRef.current.value = "";
+      return;
     }
+
+    // try {
+    //   axios.post(
+    //     `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}.json`,
+    //     newExp
+    //   );
+    // } catch (error) {
+    //   console.log(error);
+    // }
     // expenseCtx.addExpense({ ...newexp });
-    expenseCtx.addExpense();
+    expenseCtx.addExpense(newExp);
     amountRef.current.value = "";
     descriptionRef.current.value = "";
     categoryRef.current.value = "";
+  };
+
+  if (expenseCtx.editState) {
+    amountRef.current.value = expenseCtx.editObj.amount;
+    descriptionRef.current.value = expenseCtx.editObj.description;
+    categoryRef.current.value = expenseCtx.editObj.category;
+  }
+  const editExp = async () => {
+    // await axios.put(
+    //   `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}/${expenseCtx.editObj.id}.json`,
+    //   {
+    //     amount: amountRef.current.value,
+    //     category: amountRef.current.value,
+    //     description: descriptionRef.current.value,
+    //   }
+    // );
   };
 
   return (

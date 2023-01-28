@@ -3,15 +3,27 @@
   font-weight: bold;
   font-size: 30px;
   margin-left: 5%;
+  
 }
 .expCat {
-  margin-left: 10%;
+  margin-left: 40%;
   font-size: 20px;
   color: grey;
   margin-right: 10px;
+  display: flex;
 }
 .expAmount {
-  margin-left: 25%;
+  margin-left: 65%;
+}
+.delexp {
+  background-color: grey;
+  margin-left: 45px;
+}
+.editexp {
+  background-color: gray;
+  font-size: 15px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 5%;
 }
 
 .moneyItemslabel {
@@ -27,3 +39,4 @@
   color: white;
   background-color: blue;
 }
+

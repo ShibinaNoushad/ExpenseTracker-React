@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ExpenseContext from "./ExpenseContext";
 
 const LoginContext = React.createContext({
   token: "",
@@ -10,6 +11,7 @@ export default LoginContext;
 
 export const LoginContextProvider = (props) => {
   const userId = localStorage.getItem("email");
+  const expnCtx = useState(ExpenseContext);
 
   const initialToken = localStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
@@ -23,6 +25,7 @@ export const LoginContextProvider = (props) => {
     setToken(null);
     localStorage.removeItem("token");
     localStorage.removeItem("email");
+    // expnCtx.setEMaill("");
   };
   const contextValue = {
     token: token,

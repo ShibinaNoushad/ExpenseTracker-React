@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useHistory, Redirect } from "react-router-dom";
+import ExpenseContext from "../../Store/ExpenseContext";
 import LoginContext from "../../Store/LoginContext";
 import "./Login.css";
 
@@ -9,6 +10,7 @@ function Login() {
 
   const [isLogin, setIsLogin] = useState(false);
   const loginCtx = useContext(LoginContext);
+  const expnCtx = useContext(ExpenseContext);
   const switchHandler = () => {
     setIsLogin((prev) => {
       return !prev;
@@ -27,12 +29,16 @@ function Login() {
     e.preventDefault();
     const userEmail = emailInputRef.current.value;
     const userPassword = passwordInputRef.current.value;
+    const Email = userEmail.replace("@", "").replace(".", "");
+
     // const userConfirmPassword = confirmPasswordInputRef.current.value;
     if (!isLogin && userPassword !== confirmPasswordInputRef.current.value) {
       alert("password not matching");
       return;
     }
-    localStorage.setItem("email", userEmail);
+    expnCtx.setEmaill(Email);
+    localStorage.setItem("email", Email);
+
     console.log("success");
     let url;
     if (isLogin) {

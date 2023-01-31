@@ -1,15 +1,18 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useHistory, Redirect } from "react-router-dom";
 import ExpenseContext from "../../Store/ExpenseContext";
-import LoginContext from "../../Store/LoginContext";
+// import LoginContext from "../../Store/LoginContext";
+import { authActions } from "../../Store/AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 import "./Login.css";
 
 function Login() {
+  const token = localStorage.getItem("token");
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(false);
-  const loginCtx = useContext(LoginContext);
   const expnCtx = useContext(ExpenseContext);
   const switchHandler = () => {
     setIsLogin((prev) => {
@@ -20,7 +23,11 @@ function Login() {
     history.replace("/resetpassword");
     console.log("reset");
   };
-
+  useEffect(() => {
+    if (token) {
+      dispatch(authActions.loginHandler(token));
+    }
+  }, []);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
@@ -62,7 +69,10 @@ function Login() {
       });
       if (res.ok) {
         const data = await res.json();
-        loginCtx.login(data.idToken);
+        // loginCtx.login(data.idToken);
+        localStorage.setItem("token", data.idToken);
+        dispatch(authActions.loginHandler(data.idToken));
+
         // console.log(data);
         emailInputRef.current.value = "";
         passwordInputRef.current.value = "";

@@ -4,11 +4,18 @@ import { Link, NavLink } from "react-router-dom";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import classes from "./MyNavbar.module.css";
 import LoginContext from "../../Store/LoginContext";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../Store/AuthSlice";
+import { useSelector } from "react-redux";
 
 function MyNavbar() {
+  const isLogin = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
   const loginCtx = useContext(LoginContext);
   const logoutHandler = () => {
-    loginCtx.logout();
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    dispatch(authActions.logoutHandler());
   };
   return (
     <div>
@@ -38,7 +45,7 @@ function MyNavbar() {
               About Us
             </Nav.Link>
           </Nav>
-          {loginCtx.isLoggedIn && (
+          {isLogin && (
             <Button variant="secondary" onClick={logoutHandler}>
               Logout
             </Button>

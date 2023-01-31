@@ -7,8 +7,11 @@ import Welcome from "./Pages/Welcome/Welcome";
 import UserProfile from "./Pages/UserProfile/UserProfile";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import AddExpenseForm from "./Pages/AddExpense/AddExpenseForm";
+import { useSelector } from "react-redux";
 function App() {
   const loginCtx = useContext(LoginContext);
+  const isLogin = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <div>
       <MyNavbar></MyNavbar>
@@ -16,13 +19,13 @@ function App() {
       <Route path="/" exact>
         <Login></Login>
       </Route>
-      {loginCtx.isLoggedIn && (
+      {isLogin && (
         <Route path="/expense">
           <AddExpenseForm></AddExpenseForm>
         </Route>
       )}
-      {!loginCtx.isLoggedIn && <Redirect to="/"></Redirect>}
-      {loginCtx.isLoggedIn && <Redirect to="/welcome"></Redirect>}
+      {!isLogin && <Redirect to="/"></Redirect>}
+      {isLogin && <Redirect to="/welcome"></Redirect>}
 
       <Route path="/welcome">
         <Welcome></Welcome>

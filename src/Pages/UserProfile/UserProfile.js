@@ -3,9 +3,12 @@ import "./UserProfile.css";
 import { Form, Button } from "react-bootstrap";
 import LoginContext from "../../Store/LoginContext";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function UserProfile() {
   const loginCtx = useContext(LoginContext);
+  const token=useSelector((state)=>state.auth.token)
+  console.log(token);
   //   const usertoken = localStorage.getItem("token");
   const history = useHistory();
   const fullNameRef = useRef();
@@ -21,7 +24,7 @@ function UserProfile() {
         {
           method: "POST",
           body: JSON.stringify({
-            idToken: loginCtx.token,
+            idToken: token,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -48,7 +51,7 @@ function UserProfile() {
         throw new Error(errorMessage);
       }
     } catch (error) {
-      alert(error);
+      // alert(error);
     }
   };
   useEffect(() => {
@@ -62,14 +65,14 @@ function UserProfile() {
       alert("please enter all fields");
       return;
     }
-    // console.log(loginCtx.token);
+    // console.log(token);
     try {
       const res = await fetch(
         "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyB-1cDOSrzhXi7pQ330k-yRNDTZCPoIj1o",
         {
           method: "POST",
           body: JSON.stringify({
-            idToken: loginCtx.token,
+            idToken: token,
             displayName: fullName,
             photoUrl: Url,
             returnSecureToken: true,

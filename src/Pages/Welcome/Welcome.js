@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import { Route, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import "./Welcome.css";
 import LoginContext from "../../Store/LoginContext";
 
 function Welcome() {
   const history = useHistory();
-  const loginCtx = useContext(LoginContext);
+  // const loginCtx = useContext(LoginContext);
+  const token=useSelector((state)=>state.auth.token)
+
   const addExpenseHandler = () => {
     console.log("expense");
     history.replace("/expense");
@@ -19,7 +22,7 @@ function Welcome() {
           method: "POST",
           body: JSON.stringify({
             requestType: "VERIFY_EMAIL",
-            idToken: loginCtx.token,
+            idToken: token,
           }),
           headers: {
             "Content-Type": "application/json",

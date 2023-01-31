@@ -25,7 +25,8 @@ function Login() {
   };
   useEffect(() => {
     if (token) {
-      dispatch(authActions.loginHandler(token));
+      const loginObj = { idToken: token };
+      dispatch(authActions.loginHandler(loginObj));
     }
   }, []);
   const emailInputRef = useRef();
@@ -71,7 +72,8 @@ function Login() {
         const data = await res.json();
         // loginCtx.login(data.idToken);
         localStorage.setItem("token", data.idToken);
-        dispatch(authActions.loginHandler(data.idToken));
+        const loginObj = { idToken: data.idToken, email: userEmail };
+        dispatch(authActions.loginHandler(loginObj));
 
         // console.log(data);
         emailInputRef.current.value = "";

@@ -53,7 +53,7 @@ function AddExpenseForm() {
     //   console.log(error);
     // }
     // expenseCtx.addExpense({ ...newexp });
-    expenseCtx.addExpense(newExp);
+    expenseCtx.addExpense(newexp);
     amountRef.current.value = "";
     descriptionRef.current.value = "";
     categoryRef.current.value = "";

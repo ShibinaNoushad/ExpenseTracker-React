@@ -6,6 +6,7 @@ import ExpenseDisplay from "./ExpenseDisplay";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { expenseActions } from "../../Store/ExpenseSlice";
+import PremiumButton from "./PremiumButton";
 
 function AddExpenseForm() {
   const dispatch = useDispatch();
@@ -142,6 +143,7 @@ function AddExpenseForm() {
         </Form>
       </div>
       <ExpenseDisplay getData={getData} editExpense={editExpense} />
+      <PremiumButton></PremiumButton>
     </>
   );
 }

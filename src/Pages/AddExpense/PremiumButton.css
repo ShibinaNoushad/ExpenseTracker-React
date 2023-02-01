@@ -1,0 +1,23 @@
+.preButton {
+  width: 100%;
+  height: 100%;
+  border-radius: 200rem;
+  font-family: "product sans";
+  font-size: 1rem;
+  box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+  border: solid 3px transparent;
+}
+.preDiv {
+  position: fixed;
+  left: 15%;
+  top: 78%;
+  right: 20%;
+  height: 7%;
+  width: 13%;
+}
+.preButton:hover {
+  background-color: blueviolet;
+  color: white;
+  font-size: 18px;
+  transition-duration: 0.8s;
+}

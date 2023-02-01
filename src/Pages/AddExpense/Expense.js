@@ -1,17 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./ExpenseDisplay.css";
 import { Button } from "react-bootstrap";
 import CloseButton from "react-bootstrap/CloseButton";
 import axios from "axios";
-import ExpenseContext from "../../Store/ExpenseContext";
 
 function Expense(props) {
-  const expenseCtx = useContext(ExpenseContext);
+  const userId = localStorage.getItem("email");
   const editExpense = () => {
-    expenseCtx.editExpenseState(props.elem);
+    props.editExpense(props.elem);
   };
   const deleteExpense = async () => {
-    expenseCtx.removeExpense(props.elem.id);
+    try {
+      await axios.delete(
+        `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}/${props.elem.id}.json`
+      );
+      props.getData();
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="cont">

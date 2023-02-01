@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import classes from "./MyNavbar.module.css";
+import { expenseActions } from "../../Store/ExpenseSlice";
 import LoginContext from "../../Store/LoginContext";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/AuthSlice";
@@ -16,6 +17,8 @@ function MyNavbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     dispatch(authActions.logoutHandler());
+    dispatch(authActions.clearEmail());
+    dispatch(expenseActions.getData([]));
   };
   return (
     <div>

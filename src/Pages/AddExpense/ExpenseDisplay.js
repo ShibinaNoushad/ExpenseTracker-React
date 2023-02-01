@@ -1,14 +1,24 @@
-import React, { useContext } from "react";
+import React from "react";
 import Card from "../../Components/Card/Card";
-import ExpenseContext from "../../Store/ExpenseContext";
 import Expense from "./Expense";
 import "./ExpenseDisplay.css";
+import { useSelector } from "react-redux";
+
 function ExpenseDisplay(props) {
-  const expenseCtx = useContext(ExpenseContext);
+  const expenses = useSelector((state) => state.userExpense.expenses);
+  const editData = (editObj) => {
+    props.editExpense(editObj);
+  };
+
   return (
     <Card>
-      {expenseCtx.expenses.map((elem) => (
-        <Expense elem={elem} key={Math.random().toString() }></Expense>
+      {expenses.map((elem) => (
+        <Expense
+          elem={elem}
+          key={Math.random().toString()}
+          getData={props.getData}
+          editExpense={editData}
+        ></Expense>
       ))}
     </Card>
   );

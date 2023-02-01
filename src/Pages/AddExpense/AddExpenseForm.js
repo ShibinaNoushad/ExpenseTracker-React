@@ -1,17 +1,51 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
-import ExpenseContext from "../../Store/ExpenseContext";
 import "./AddExpenseForm.css";
 import ExpenseDisplay from "./ExpenseDisplay";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { expenseActions } from "../../Store/ExpenseSlice";
 
 function AddExpenseForm() {
-  const expenseCtx = useContext(ExpenseContext);
+  const dispatch = useDispatch();
+  const [editState, setEditState] = useState(false);
+  const [editId, setEditId] = useState("");
   const userId = localStorage.getItem("email");
   const amountRef = useRef();
   const descriptionRef = useRef();
   const categoryRef = useRef();
+  const email = useSelector((state) => state.auth.email);
+  const getData = async () => {
+    let arr = [];
+    try {
+      const res = await axios.get(
+        `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}.json`
+      );
+      for (const key in res.data) {
+        console.log(res.data[key], key);
+        arr.push({ ...res.data[key], id: key });
+      }
+      dispatch(expenseActions.getData([...arr]));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
+  // useEffect(() => {
+  //   getData();
+  // }, [email]);
+
+  const editExpense = (editObj) => {
+    setEditId(editObj.id);
+    setEditState(true);
+    amountRef.current.value = editObj.amount;
+    descriptionRef.current.value = editObj.description;
+    categoryRef.current.value = editObj.category;
+  };
 
   const addExpenseSubmitHandler = async (e) => {
     e.preventDefault();
@@ -32,47 +66,36 @@ function AddExpenseForm() {
       category: enteredCategory,
     };
     const newExp = JSON.stringify(newexp);
-    if (expenseCtx.editState) {
-      // await axios.put(
-      //   `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}/${expenseCtx.editObj.id}.json`,
-      //   newexp
-      // );
-      expenseCtx.editExpense(expenseCtx.editObj.id, newexp);
+    if (editState) {
+      try {
+        await axios.put(
+          `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}/${editId}.json`,
+          newExp
+        );
+        getData();
+        setEditId(null);
+      } catch (error) {
+        console.log(error);
+      }
+
       amountRef.current.value = "";
       descriptionRef.current.value = "";
       categoryRef.current.value = "";
       return;
     }
 
-    // try {
-    //   axios.post(
-    //     `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}.json`,
-    //     newExp
-    //   );
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    // expenseCtx.addExpense({ ...newexp });
-    expenseCtx.addExpense(newexp);
+    try {
+      await axios.post(
+        `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}.json`,
+        newExp
+      );
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
     amountRef.current.value = "";
     descriptionRef.current.value = "";
     categoryRef.current.value = "";
-  };
-
-  if (expenseCtx.editState) {
-    amountRef.current.value = expenseCtx.editObj.amount;
-    descriptionRef.current.value = expenseCtx.editObj.description;
-    categoryRef.current.value = expenseCtx.editObj.category;
-  }
-  const editExp = async () => {
-    // await axios.put(
-    //   `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}/${expenseCtx.editObj.id}.json`,
-    //   {
-    //     amount: amountRef.current.value,
-    //     category: amountRef.current.value,
-    //     description: descriptionRef.current.value,
-    //   }
-    // );
   };
 
   return (
@@ -110,7 +133,7 @@ function AddExpenseForm() {
             <option value="Movies">Movies</option>
             <option value="Fuel">Fuel</option>
             <option value="Electronics">Electronics</option>
-            <option value="Fuel">Others</option>
+            <option value="Others">Others</option>
           </Form.Select>
           <br />
           <Button variant="primary" type="submit">
@@ -118,7 +141,7 @@ function AddExpenseForm() {
           </Button>
         </Form>
       </div>
-      <ExpenseDisplay />
+      <ExpenseDisplay getData={getData} editExpense={editExpense} />
     </>
   );
 }

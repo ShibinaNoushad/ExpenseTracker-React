@@ -24,6 +24,7 @@ function MyNavbar() {
     dispatch(authActions.clearEmail());
     dispatch(expenseActions.getData([]));
     dispatch(themeActions.setLight());
+    dispatch(themeActions.hideToggleButton());
   };
   const switchTheme = () => {
     dispatch(themeActions.setDark());

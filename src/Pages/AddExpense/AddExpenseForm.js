@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { CSVLink } from "react-csv";
+
 import { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import "./AddExpenseForm.css";
@@ -24,6 +26,18 @@ function AddExpenseForm() {
   const descriptionRef = useRef();
   const categoryRef = useRef();
   const email = useSelector((state) => state.auth.email);
+  const expenseItems = useSelector((state) => state.userExpense.expenses);
+  const showToggle = useSelector((state) => state.theme.isToggle);
+
+  let arr = [];
+  const items = expenseItems.forEach((element) => {
+    arr.push({
+      Amount: element.amount,
+      Category: element.category,
+      Description: element.description,
+    });
+  });
+  const csvData = [...arr];
   const getData = async () => {
     let arr = [];
     try {
@@ -151,6 +165,13 @@ function AddExpenseForm() {
       </div>
       <ExpenseDisplay getData={getData} editExpense={editExpense} />
       <PremiumButton></PremiumButton>
+      {showToggle && (
+        <CSVLink data={csvData}>
+          <Button variant="outline-success" className="download">
+            🡇 Download file
+          </Button>
+        </CSVLink>
+      )}
     </div>
   );
 }

@@ -49,3 +49,8 @@
   position: fixed;
   background-color: red;
 }
+.download {
+  margin-left: 17%;
+  margin-top: 42%;
+  height: 2rem;
+}

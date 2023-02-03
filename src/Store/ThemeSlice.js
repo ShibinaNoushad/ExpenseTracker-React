@@ -7,6 +7,9 @@ const ThemeSlie = createSlice({
     showToggleButton(state) {
       state.isToggle = true;
     },
+    hideToggleButton(state) {
+      state.isToggle = false;
+    },
     setDark(state) {
       state.isDark = !state.isDark;
     },

@@ -26,11 +26,13 @@ function Expense(props) {
       <span className="expAmount">
         <Button className="moneyItemslabel">{props.elem.amount}</Button>
       </span>
-      <Button className="editexp" onClick={editExpense}>
+      <Button variant="primary" className="editexp" onClick={editExpense}>
         Edit
       </Button>
-      <CloseButton className="delexp" onClick={deleteExpense}></CloseButton>
-      <hr />
+      <Button className="delexp" onClick={deleteExpense}>
+        Delete
+      </Button>
+      <hr style={{ color: "blue" }} />
     </div>
   );
 }

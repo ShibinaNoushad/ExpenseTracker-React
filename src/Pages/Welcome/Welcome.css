@@ -1,34 +1,41 @@
 .welcome {
-  font-size: 30px;
+  font-size: 40px;
+  color: turquoise;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin-left: 400px;
-  padding-top: 40%;
+  margin-left: 354px;
+  font-weight: bold;
+  /* background-color: navy; */
 }
 .profile {
   margin-left: 30%;
   margin-top: 50px;
-
+  background-color: navy;
   margin-bottom: 50px;
   height: 30px;
   font-style: italic;
+  font-weight: bold;
+
 }
 .verify {
   margin-left: 700px;
   font-style: italic;
+  background-color: navy;
+  font-weight: bold;
 }
 .bor {
-  background-image: url("../../Components/Login/blue.jpg");
+  /* background-image: url("../../Components/Login/blue.jpg"); */
   height: 700px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.addExpensebtn{
+.addExpensebtn {
+  background-color: navy;
+
   margin-top: 5%;
   margin-left: 50%;
   width: 20%;
   height: 10%;
-  background-color:grey;
   color: white;
   font-weight: bold;
   font-size: 20px;

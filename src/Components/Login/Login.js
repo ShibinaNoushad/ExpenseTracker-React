@@ -99,7 +99,7 @@ function Login() {
   };
   return (
     <div className="">
-      <img src={require("./blue.jpg")} alt="img" className="backgroundDiv" />
+      {/* <img src={require("./blue.jpg")} alt="img" className="backgroundDiv" /> */}
       <div className="loginBox">
         <h1 className="inputHeading">{isLogin ? "Login" : "Sign Up"}</h1>
         <Form onSubmit={formHandler}>

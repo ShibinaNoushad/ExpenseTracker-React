@@ -8,9 +8,13 @@ import LoginContext from "../../Store/LoginContext";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/AuthSlice";
 import { useSelector } from "react-redux";
+import { themeActions } from "../../Store/ThemeSlice";
 
 function MyNavbar() {
   const isLogin = useSelector((state) => state.auth.isLoggedIn);
+  const showToggle = useSelector((state) => state.theme.isToggle);
+  const theme = useSelector((state) => state.theme.isDark);
+
   const dispatch = useDispatch();
   const loginCtx = useContext(LoginContext);
   const logoutHandler = () => {
@@ -19,37 +23,55 @@ function MyNavbar() {
     dispatch(authActions.logoutHandler());
     dispatch(authActions.clearEmail());
     dispatch(expenseActions.getData([]));
+    dispatch(themeActions.setLight());
+  };
+  const switchTheme = () => {
+    dispatch(themeActions.setDark());
   };
   return (
     <div>
-      <Navbar bg="light" variant="light">
+      <Navbar
+        bg={!theme ? "light" : "black"}
+        variant={!theme ? "light" : "black"}
+      >
         <Container>
           <Navbar.Brand className={classes.myweb}>MyWebLink</Navbar.Brand>
-          <Nav className="me-auto " bg="dark" variant="dark">
-            <Nav.Link
-              to="/home"
-              className={classes.titlelabels}
-              // activeClassName={classes.active}
-            >
+          <Nav className="me-auto ">
+            <NavLink to="/welcome" className={classes.titlelabels}>
               Home
-            </Nav.Link>
-            <Nav.Link
+            </NavLink>
+            <NavLink
               to="/expense"
               className={classes.titlelabels}
               // activeClassName={classes.active}
             >
               Expenses
-            </Nav.Link>
-            <Nav.Link
+            </NavLink>
+
+            <NavLink
               to="/about"
               className={classes.titlelabels}
               // activeClassName={classes.active}
             >
               About Us
-            </Nav.Link>
+            </NavLink>
           </Nav>
+          {isLogin && showToggle && (
+            <Button
+              variant="info"
+              className={classes.logout}
+              onClick={switchTheme}
+            >
+              Toggle
+            </Button>
+          )}
+
           {isLogin && (
-            <Button variant="secondary" onClick={logoutHandler}>
+            <Button
+              variant="info"
+              className={classes.logout}
+              onClick={logoutHandler}
+            >
               Logout
             </Button>
           )}

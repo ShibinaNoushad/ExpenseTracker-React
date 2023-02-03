@@ -1,7 +1,7 @@
 .myCardDiv {
   position: fixed;
   /* border: 2px solid red; */
-  top: 10%;
+  top: 13%;
   left: 45%;
   right: 5%;
   height: 80%;
@@ -9,7 +9,7 @@
   overflow: scroll;
   border: 1px solid grey;
   border-radius: 5px;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
 
   /* background-color: aquamarine; */
 }

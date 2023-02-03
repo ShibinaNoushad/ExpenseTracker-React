@@ -8,16 +8,22 @@ import UserProfile from "./Pages/UserProfile/UserProfile";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import AddExpenseForm from "./Pages/AddExpense/AddExpenseForm";
 import { useSelector } from "react-redux";
+import "./App.css";
 function App() {
-  const loginCtx = useContext(LoginContext);
+  const lightTheme = useSelector((state) => state.theme.isDark);
+  // document.body.style.backgroundColor='black'
+
   const isLogin = useSelector((state) => state.auth.isLoggedIn);
 
   return (
-    <div>
+    <div className={!lightTheme ? "light" : "dark"}>
       <MyNavbar></MyNavbar>
 
       <Route path="/" exact>
         <Login></Login>
+      </Route>
+      <Route path="/expense">
+        <AddExpenseForm></AddExpenseForm>
       </Route>
       {isLogin && (
         <Route path="/expense">

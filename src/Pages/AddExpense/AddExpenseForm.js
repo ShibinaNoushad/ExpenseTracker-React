@@ -9,6 +9,13 @@ import { expenseActions } from "../../Store/ExpenseSlice";
 import PremiumButton from "./PremiumButton";
 
 function AddExpenseForm() {
+  const theme = useSelector((state) => state.theme.isDark);
+  // // useEffect(() => {
+  //   if (theme) {
+  //     document.body.style.backgroundColor = "black";
+  //   }
+  // // }, [theme]);
+
   const dispatch = useDispatch();
   const [editState, setEditState] = useState(false);
   const [editId, setEditId] = useState("");
@@ -100,10 +107,10 @@ function AddExpenseForm() {
   };
 
   return (
-    <>
+    // <div className="fulldiv">
+    <div className={theme ? "changebgblack" : "changebgwhite"}>
       <div className="addExpenseDiv">
         <h2>Expense Tracker</h2>
-
         <Form onSubmit={addExpenseSubmitHandler}>
           <Form.Group className="mb-3">
             <Form.Label className="addExpenseLabel">Amount</Form.Label>
@@ -144,7 +151,7 @@ function AddExpenseForm() {
       </div>
       <ExpenseDisplay getData={getData} editExpense={editExpense} />
       <PremiumButton></PremiumButton>
-    </>
+    </div>
   );
 }
 

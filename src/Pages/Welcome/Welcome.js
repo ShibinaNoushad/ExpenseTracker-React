@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
@@ -6,9 +6,22 @@ import "./Welcome.css";
 import LoginContext from "../../Store/LoginContext";
 
 function Welcome() {
+  // const theme = useSelector((state) => state.theme.isDark);
+  // // if (theme) {
+  // //   document.body.style.backgroundColor = "black";
+
+  // //   console.log("dark");
+  // // }
+  // useEffect(() => {
+  //   if (!theme) {
+  //     document.body.style.backgroundColor = "black";
+  //   }
+  // }, theme);
+
+  // document.body.style.color = "white";
+
   const history = useHistory();
-  // const loginCtx = useContext(LoginContext);
-  const token=useSelector((state)=>state.auth.token)
+  const token = useSelector((state) => state.auth.token);
 
   const addExpenseHandler = () => {
     console.log("expense");
@@ -52,11 +65,7 @@ function Welcome() {
     <>
       <div className="bor">
         <span className="welcome">Welcome To Expense Tracker!!!</span>
-        <Button
-          variant="secondary"
-          className="profile"
-          onClick={setUserProfile}
-        >
+        <Button variant="primary" className="profile" onClick={setUserProfile}>
           Your profile is incomplete.Complete Now
         </Button>
         <Button variant="primary" className="verify" onClick={verifyEmail}>

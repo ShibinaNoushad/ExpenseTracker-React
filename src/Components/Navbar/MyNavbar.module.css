@@ -2,9 +2,10 @@
   cursor: pointer;
   margin-left: 40px;
   align-content: center;
-  color: black;
-  font-weight: 3px;
-  /* font-size: large; */
+  color: turquoise;
+  /* color: black; */
+  font-weight: bold;
+  font-size: large;
 }
 .active {
   color: #95bcf0;
@@ -12,10 +13,17 @@
   /* border-bottom: 4px solid #95bcf0; */
 }
 .myweb {
-  color: blue;
+  color: turquoise;
   padding-left: 40px;
   font-weight: bold;
 }
 .margin {
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid gray;
+  margin-bottom: 30px;
+}
+.logout{
+  background-color: turquoise;
+  color: black;
+  font-weight: bold;
+  margin-left: 30px;
 }

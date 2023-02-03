@@ -1,7 +1,7 @@
 .addExpenseDiv {
   position: fixed;
   border: 2px solid grey;
-  top: 15%;
+  top: 22%;
   left: 2%;
   right: 60%;
   height: 60%;
@@ -16,8 +16,36 @@
 }
 .addExpenseLabel {
   font-weight: bold;
+  color: gray;
 }
 .addExpenseInput {
   width: 50%;
   margin-left: 25%;
+}
+.changebgblack {
+  top: 7%;
+  left: 0%;
+  right: 0%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: black;
+}
+.changebgwhite {
+  top: 7%;
+  left: 0%;
+  right: 0%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: white;
+}
+.fulldiv {
+  top: 7%;
+  left: 0%;
+  right: 0%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: red;
 }

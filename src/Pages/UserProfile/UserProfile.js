@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 function UserProfile() {
   const loginCtx = useContext(LoginContext);
-  const token=useSelector((state)=>state.auth.token)
+  const token = useSelector((state) => state.auth.token);
   console.log(token);
   //   const usertoken = localStorage.getItem("token");
   const history = useHistory();
@@ -104,16 +104,7 @@ function UserProfile() {
   };
   return (
     <>
-      <div className="bor">
-        {/* <span className="quote">
-          Winners Never Quit, Quitters Never Win
-          <br />
-        </span>
-        <span className="complete">
-          Your profile is 64% completed.A complete profile has higher chances of
-          landing a job
-        </span> */}
-      </div>
+      <div className="bor"></div>
       <div className="contain">
         <h5 className="contact">Contact Details</h5>
         <Form>
@@ -129,7 +120,7 @@ function UserProfile() {
             <Form.Label className="inputLabel">Profile Photo Url</Form.Label>
             <Form.Control
               type="text"
-              className="loginInput"
+              className="loginInputUser"
               ref={photoUrlRef}
             />
           </Form.Group>

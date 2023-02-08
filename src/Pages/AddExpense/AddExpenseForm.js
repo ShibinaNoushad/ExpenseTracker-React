@@ -17,6 +17,7 @@ function AddExpenseForm() {
   //     document.body.style.backgroundColor = "black";
   //   }
   // // }, [theme]);
+  const [submit, setSubmit] = useState("Add Expense");
 
   const dispatch = useDispatch();
   const [editState, setEditState] = useState(false);
@@ -70,6 +71,7 @@ function AddExpenseForm() {
   };
 
   const addExpenseSubmitHandler = async (e) => {
+    setSubmit("Adding....");
     e.preventDefault();
     const enteredAmount = amountRef.current.value;
     const enteredDescription = descriptionRef.current.value;
@@ -95,6 +97,8 @@ function AddExpenseForm() {
           newExp
         );
         getData();
+        setSubmit("Add Expense");
+
         setEditId(null);
       } catch (error) {
         console.log(error);
@@ -112,6 +116,7 @@ function AddExpenseForm() {
         newExp
       );
       getData();
+      setSubmit("Add Expense");
     } catch (error) {
       console.log(error);
     }
@@ -159,7 +164,7 @@ function AddExpenseForm() {
           </Form.Select>
           <br />
           <Button variant="primary" type="submit">
-            Submit
+            {submit}
           </Button>
         </Form>
       </div>

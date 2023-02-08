@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialThemeState = { isToggle: false, isDark: false };
+const initialThemeState = {
+  isToggle: false,
+  isDark: false,
+};
 const ThemeSlie = createSlice({
   name: "theme",
   initialState: initialThemeState,

@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ExpenseDisplay.css";
 import { Button } from "react-bootstrap";
 import CloseButton from "react-bootstrap/CloseButton";
 import axios from "axios";
 
 function Expense(props) {
+  const [deleteco, setDeleting] = useState("Delete");
   const userId = localStorage.getItem("email");
   const editExpense = () => {
     props.editExpense(props.elem);
   };
   const deleteExpense = async () => {
+    setDeleting("Deleting...");
     try {
       await axios.delete(
         `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}/${props.elem.id}.json`
@@ -30,9 +32,9 @@ function Expense(props) {
         Edit
       </Button>
       <Button className="delexp" onClick={deleteExpense}>
-        Delete
+        {deleteco}
       </Button>
-      <hr style={{ color: "blue" }} />
+      <hr style={{ color: "gray" }} />
     </div>
   );
 }

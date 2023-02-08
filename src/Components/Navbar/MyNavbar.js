@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { Route } from "react-router-dom";
-import { Link, NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import classes from "./MyNavbar.module.css";
 import { expenseActions } from "../../Store/ExpenseSlice";
-import LoginContext from "../../Store/LoginContext";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/AuthSlice";
 import { useSelector } from "react-redux";
@@ -16,7 +14,6 @@ function MyNavbar() {
   const theme = useSelector((state) => state.theme.isDark);
 
   const dispatch = useDispatch();
-  const loginCtx = useContext(LoginContext);
   const logoutHandler = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
@@ -38,25 +35,21 @@ function MyNavbar() {
         <Container>
           <Navbar.Brand className={classes.myweb}>MyWebLink</Navbar.Brand>
           <Nav className="me-auto ">
-            <NavLink to="/welcome" className={classes.titlelabels}>
-              Home
-            </NavLink>
-            <NavLink
-              to="/expense"
-              className={classes.titlelabels}
-              // activeClassName={classes.active}
-            >
-              Expenses
-            </NavLink>
-
-            <NavLink
-              to="/about"
-              className={classes.titlelabels}
-              // activeClassName={classes.active}
-            >
-              About Us
-            </NavLink>
+            {isLogin && (
+              <>
+                <NavLink to="/welcome" className={classes.titlelabels}>
+                  Home
+                </NavLink>
+                <NavLink to="/expense" className={classes.titlelabels}>
+                  Expenses
+                </NavLink>
+                <NavLink to="/about" className={classes.titlelabels}>
+                  About Us
+                </NavLink>
+              </>
+            )}
           </Nav>
+
           {isLogin && showToggle && (
             <Button
               variant="info"

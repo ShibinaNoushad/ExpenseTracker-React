@@ -61,7 +61,7 @@ function UserProfile() {
   const updateUser = async () => {
     const fullName = fullNameRef.current.value;
     const Url = photoUrlRef.current.value;
-    if (fullName.length < 4 || Url.length < 4) {
+    if (fullName.length < 2 || Url.length < 2) {
       alert("please enter all fields");
       return;
     }

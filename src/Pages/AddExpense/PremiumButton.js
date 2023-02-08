@@ -14,6 +14,9 @@ function PremiumButton() {
   const activateToggle = () => {
     dispatch(themeActions.showToggleButton());
   };
+  if (amount < 10000) {
+    dispatch(themeActions.hideToggleButton());
+  }
   return (
     <div className="preDiv">
       {amount >= 10000 ? (

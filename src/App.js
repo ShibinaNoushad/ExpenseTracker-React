@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import MyNavbar from "./Components/Navbar/MyNavbar";
 import Login from "./Components/Login/Login";
+import About from "./Pages/About/About";
 import LoginContext from "./Store/LoginContext";
 import { Redirect, Route } from "react-router-dom";
 import Welcome from "./Pages/Welcome/Welcome";
@@ -35,6 +36,9 @@ function App() {
 
       <Route path="/welcome">
         <Welcome></Welcome>
+      </Route>
+      <Route path="/about">
+        <About />
       </Route>
       <Route path="/userProfile">
         <UserProfile></UserProfile>

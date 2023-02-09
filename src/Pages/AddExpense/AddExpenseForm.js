@@ -46,7 +46,6 @@ function AddExpenseForm() {
         `https://expensetracker-2142b-default-rtdb.firebaseio.com/expense/${userId}.json`
       );
       for (const key in res.data) {
-        console.log(res.data[key], key);
         arr.push({ ...res.data[key], id: key });
       }
       dispatch(expenseActions.getData([...arr]));

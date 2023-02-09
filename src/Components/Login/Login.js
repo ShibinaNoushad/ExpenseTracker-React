@@ -47,7 +47,6 @@ function Login() {
     expnCtx.setEmaill(Email);
     localStorage.setItem("email", Email);
 
-    console.log("success");
     let url;
     if (isLogin) {
       url =

@@ -8,13 +8,11 @@ import { useSelector } from "react-redux";
 function UserProfile() {
   const loginCtx = useContext(LoginContext);
   const token = useSelector((state) => state.auth.token);
-  console.log(token);
   //   const usertoken = localStorage.getItem("token");
   const history = useHistory();
   const fullNameRef = useRef();
   const photoUrlRef = useRef();
   const cancelFun = () => {
-    console.log("cancel");
     history.replace("/welcome");
   };
   const getData = async () => {
@@ -35,7 +33,6 @@ function UserProfile() {
         const data = await res.json();
         // console.log(data);
         data.users.forEach((element) => {
-          console.log(data.users);
           fullNameRef.current.value = element.displayName
             ? element.displayName
             : "";

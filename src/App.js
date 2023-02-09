@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import MyNavbar from "./Components/Navbar/MyNavbar";
 import Login from "./Components/Login/Login";
 import About from "./Pages/About/About";
-import LoginContext from "./Store/LoginContext";
 import { Redirect, Route } from "react-router-dom";
 import Welcome from "./Pages/Welcome/Welcome";
 import UserProfile from "./Pages/UserProfile/UserProfile";

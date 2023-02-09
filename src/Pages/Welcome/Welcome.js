@@ -24,7 +24,6 @@ function Welcome() {
   const token = useSelector((state) => state.auth.token);
 
   const addExpenseHandler = () => {
-    console.log("expense");
     history.replace("/expense");
   };
   const verifyEmail = async () => {
@@ -55,7 +54,7 @@ function Welcome() {
         throw new Error(errorMessage);
       }
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
   const setUserProfile = () => {
